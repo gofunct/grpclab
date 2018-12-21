@@ -1,7 +1,7 @@
 syntax = "proto3";
 option go_package = "github.com/lileio/auth_service";
 import "google/protobuf/empty.proto";
-import "github.com/gofunct/protobufs/services/account/account.proto";
+import "github.com/gofunct/services/account/account.proto";
 
 package auth;
 

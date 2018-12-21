@@ -1,7 +1,7 @@
 syntax = "proto3";
-option go_package = "github.com/gofunct/protobufs/services/account";
+option go_package = "github.com/gofunct/services/account";
 import "google/protobuf/empty.proto";
-import "github.com/gofunct/protobufs/services/image/image.proto";
+import "github.com/gofunct/services/image/image.proto";
 
 package account;
 

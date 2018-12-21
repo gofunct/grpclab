@@ -1,5 +1,5 @@
 syntax = "proto3";
-option go_package = "github.com/gofunct/protobufs/services/image";
+option go_package = "github.com/gofunct/services/image";
 package image;
 
 message Image {
