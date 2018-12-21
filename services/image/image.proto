@@ -1,6 +1,6 @@
 syntax = "proto3";
 option go_package = "github.com/gofunct/protobufs/services/image";
-package image_service;
+package image;
 
 message Image {
     string version_name = 1;

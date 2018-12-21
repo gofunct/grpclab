@@ -3,14 +3,14 @@ option go_package = "github.com/gofunct/protobufs/services/account";
 import "google/protobuf/empty.proto";
 import "github.com/gofunct/protobufs/services/image/image.proto";
 
-package account_service;
+package account;
 
 message Account {
     string id = 1;
     string name = 2;
     string email = 3;
     string confirm_token = 4;
-    map<string, image_service.Image> images = 5;
+    map<string, image.Image> images = 5;
     string password_reset_token = 6;
     map<string, string> metadata = 7;
 }
@@ -58,13 +58,13 @@ message ConfirmAccountRequest {
 message CreateAccountRequest {
     Account account = 1;
     string password = 2;
-    image_service.ImageStoreRequest image = 3;
+    image.ImageStoreRequest image = 3;
 }
 
 message UpdateAccountRequest {
     string id = 1;
     string password = 2;
-    image_service.ImageStoreRequest image = 3;
+    image.ImageStoreRequest image = 3;
     Account account = 4;
 }
 

@@ -3,7 +3,7 @@ option go_package = "github.com/lileio/auth_service";
 import "google/protobuf/empty.proto";
 import "github.com/gofunct/protobufs/services/account/account.proto";
 
-package auth_service;
+package auth;
 
 message AuthRequest {
     string email = 1;
@@ -12,7 +12,7 @@ message AuthRequest {
 
 message AuthResponse {
     string token = 1;
-    account_service.Account account = 2;
+    account.Account account = 2;
 }
 
 message ValidateRequest {

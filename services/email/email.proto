@@ -1,6 +1,6 @@
 syntax = "proto3";
 option go_package = "github.com/gofunct/protobufs/services/email";
-package email_service;
+package email;
 
 message Email {
     string from = 1;
