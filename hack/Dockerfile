@@ -86,6 +86,8 @@ ENTRYPOINT [ "protoc", "-I/usr/local/include" ]
 
 # prototool
 FROM protoc-all AS prototool
+COPY templates /templates
+COPY prototool.yaml /prototool.yaml
 ENTRYPOINT [ "prototool" ]
 
 # grpc-cli
