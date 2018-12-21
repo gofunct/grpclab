@@ -10,7 +10,7 @@ generate:
     flags: plugins=grpc
     output: .
   - name: gotemplate
-    flags: template_dir=templates
+    flags: template_dir=../templates
     output: .
   - name: cobra
     flags: plugins=client

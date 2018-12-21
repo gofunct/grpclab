@@ -6,7 +6,7 @@ import (
 	context "context"
 	"fmt"
 	oldcontext "golang.org/x/net/context"
-    pb "github.com/gofunct/services"
+    pb "/"
 	"github.com/go-kit/kit/endpoint"
 )
 

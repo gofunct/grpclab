@@ -1,8 +1,8 @@
 # Common variables
-{{.File.Name}}:                                                                           services/image/image.proto
-{{.File.Name | upper}}:                                                                   SERVICES/IMAGE/IMAGE.PROTO
+{{.File.Name}}:                                                                           image/image.proto
+{{.File.Name | upper}}:                                                                   IMAGE/IMAGE.PROTO
 {{.File.Package | base | replace "." "-"}}                                                image
-{{$packageDir := .File.Name | dir}}{{$packageDir}}                                        services/image
+{{$packageDir := .File.Name | dir}}{{$packageDir}}                                        image
 {{$packageName := .File.Name | base | replace ".proto" ""}}{{$packageName}}               image
 {{$packageImport := .File.Package | replace "." "_"}}{{$packageImport}}                   image
 {{$namespacedPackage := .File.Package}}{{$namespacedPackage}}                             image
@@ -25,7 +25,7 @@
 {{abbrev 5 "hello world"}}:                                                         he...
 {{abbrevboth 5 10 "1234 5678 9123"}}:                                               ...5678...
 {{initials "First Try"}}:                                                           FT
-{{randNumeric 3}}:                                                                  626
+{{randNumeric 3}}:                                                                  653
 {{- /*{{wrap 80 $someText}}*/}}:
 {{wrapWith 5 "\t" "Hello World"}}:                                                  Hello	World
 {{contains "cat" "catch"}}:                                                         true

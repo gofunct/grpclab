@@ -8,8 +8,9 @@ import (
         grpctransport "github.com/go-kit/kit/transport/grpc"
         "github.com/go-kit/kit/endpoint"
         jwt "github.com/go-kit/kit/auth/jwt"
-        pb "github.com/gofunct/services/services/account"
-        endpoints "github.com/gofunct/services/services/account/endpoints"
+
+        pb "/"
+        endpoints "//endpoints"
 )
 
 
@@ -344,8 +345,8 @@ import (
         "github.com/go-kit/kit/endpoint"
         jwt "github.com/go-kit/kit/auth/jwt"
 
-        pb "github.com/gofunct/services"
-        endpoints "github.com/gofunct/services/endpoints"
+        pb "/"
+        endpoints "//endpoints"
 )
 
 

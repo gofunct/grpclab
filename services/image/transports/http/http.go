@@ -8,10 +8,10 @@ import (
 	"encoding/json"
 	"context"
 
-    pb "github.com/gofunct/services"
+    pb "/"
     gokit_endpoint "github.com/go-kit/kit/endpoint"
     httptransport "github.com/go-kit/kit/transport/http"
-    endpoints "github.com/gofunct/services/endpoints"
+    endpoints "//endpoints"
 )
 
 var _ = log.Printf

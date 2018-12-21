@@ -1,17 +1,114 @@
-# Common variables
-{{`{{.File.Name}}`}}:                                                                           {{.File.Name}}
-{{`{{.File.Name | upper}}`}}:                                                                   {{.File.Name | upper}}
-{{`{{.File.Package | base | replace "." "-"}}`}}                                                {{.File.Package | base | replace "." "-"}}
-{{- /*{{`{{$file := .File}}{{$file}}`}}                                                               {{$file := .File}}{{$file}}*/}}
-{{`{{$packageDir := .File.Name | dir}}{{$packageDir}}`}}                                        {{$packageDir := .File.Name | dir}}{{$packageDir}}
-{{`{{$packageName := .File.Name | base | replace ".proto" ""}}{{$packageName}}`}}               {{$packageName := .File.Name | base | replace ".proto" ""}}{{$packageName}}
-{{`{{$packageImport := .File.Package | replace "." "_"}}{{$packageImport}}`}}                   {{$packageImport := .File.Package | replace "." "_"}}{{$packageImport}}
-{{`{{$namespacedPackage := .File.Package}}{{$namespacedPackage}}`}}                             {{$namespacedPackage := .File.Package}}{{$namespacedPackage}}
-{{`{{$currentFile := .File.Name | getProtoFile}}{{$currentFile}}`}}                             {{$currentFile := .File.Name | getProtoFile}}{{$currentFile}}
-{{`{{- /*{{- $currentPackageName := $currentFile.GoPkg.Name}}{{$currentPackageName}}*/}}`}}     {{- /*{{- $currentPackageName := $currentFile.GoPkg.Name}}{{$currentPackageName}}*/}}
-# TODO: more variables
+# Service Template Variables
 
-# Sprig: strings
+{{/* ----------------------------- nominal case ---------------------------- */}}
+
+
+##
+{{`{{.File.Name}}`}}:                                                                           {{.File.Name}}
+
+##
+{{`{{.File.Name | upper}}`}}:                                                                   {{.File.Name | upper}}
+
+##
+{{`{{.File.Package | base | replace "." "-"}}`}}                                                {{.File.Package | base | replace "." "-"}}
+
+##
+{{- /*{{`{{$file := .File}}{{$file}}`}}                                                               {{$file := .File}}{{$file}}*/}}
+
+##
+{{`{{$packageDir := .File.Name | dir}}{{$packageDir}}`}}                                        {{$packageDir := .File.Name | dir}}{{$packageDir}}
+
+##
+{{`{{$packageName := .File.Name | base | replace ".proto" ""}}{{$packageName}}`}}               {{$packageName := .File.Name | base | replace ".proto" ""}}{{$packageName}}
+
+##
+{{`{{$packageImport := .File.Package | replace "." "_"}}{{$packageImport}}`}}                   {{$packageImport := .File.Package | replace "." "_"}}{{$packageImport}}
+
+##
+{{`{{$namespacedPackage := .File.Package}}{{$namespacedPackage}}`}}                             {{$namespacedPackage := .File.Package}}{{$namespacedPackage}}
+
+##
+{{`{{$currentFile := .File.Name | getProtoFile}}{{$currentFile}}`}}                             {{$currentFile := .File.Name | getProtoFile}}{{$currentFile}}
+
+##
+{{`{{- /*{{- $currentPackageName := $currentFile.GoPkg.Name}}{{$currentPackageName}}*/}}`}}     {{- /*{{- $currentPackageName := $currentFile.GoPkg.Name}}{{$currentPackageName}}*/}}
+
+##
+{{`{{$file:=.File}}`}}:                                                                         {{$file:=.File}}
+
+##
+{{`{{cat .GoPWD "/" .DestinationDir | nospace | clean}}`}}:                                     {{cat .GoPWD "/" .DestinationDir | nospace | clean}}
+
+##
+{{`{{.Name}}`}}:                                                                                {{.Name}}
+
+##
+{{`{{.OutputType | splitArray "." | last}}`}}:                                                  {{.OutputType | splitArray "." | last}}
+
+##
+{{`{{.Name | lower}}`}}:                                                                        {{.Name | lower}}
+
+##
+{{`{{$file.Package | title}}`}}:                                                                {{$file.Package | title}}
+
+##
+{{`// {{$m.Name}} : {{$m | httpVerb}} {{$m | httpPath}}`}}:                                      {{$m.Name}} : {{$m | httpVerb}} {{$m | httpPath}}
+
+ {{if $t.OneofDecl}}
+
+{{with $t := $m.InputType | getMessageType $.File}}
+{{if and (not $m.ServerStreaming) (not $m.ClientStreaming)}}
+
+##
+
+```go
+
+{{range .Service.Method}}
+		{{if and (not .ServerStreaming) (not .ClientStreaming)}}
+			log.Println("new HTTP endpoint: \"/{{.Name}}\" (service={{$file.Package | title}})")
+			mux.Handle("/{{.Name}}", Make{{.Name}}Handler(svc, endpoints.{{.Name}}Endpoint))
+		{{end}}
+	{{end}}
+
+```
+
+##
+{{`{{range $m := .Service.Method}}{{with $t := $m.InputType | getMessageType $.File}} {{$m.Name}}({{range $f := $t.Field}}{{$f.Name|lowerCamelCase}} {{$f| goTypeWithPackage }} {{end}}) ({{with $out := $m.OutputType | getMessageType $.File}}{{range $f := $out.Field}}{{$f | goTypeWithPackage}}, {{end}}{{end}} error){{end}}{{end}}`}}:
+
+
+{{range $m := .Service.Method}}{{with $t := $m.InputType | getMessageType $.File}} {{$m.Name}}({{range $f := $t.Field}}{{$f.Name|lowerCamelCase}} {{$f| goTypeWithPackage }} {{end}}) ({{with $out := $m.OutputType | getMessageType $.File}}{{range $f := $out.Field}}{{$f | goTypeWithPackage}}, {{end}}{{end}} error){{end}}{{end}}
+
+
+
+## Get one specific method on array method using index
+{{`{{ index .Service.Method 1 }}`}}:                                                      {{ index .Service.Method 1 }}
+{{`{{ index .Service.Method 2 }}`}}:                                                      {{ index .Service.Method 2 }}
+{{`{{ index .Service.Method 3 }}`}}:                                                      {{ index .Service.Method 3 }}
+
+##
+{{`{{$pkg := "pb"}}`}}:                                                                    {{$pkg := "pb"}}
+
+##
+{{`{{with $t := $m.InputType | getMessageType $.File}}`}}:                                 {{with $t := $m.InputType | getMessageType $.File}}
+
+## Arithmetic
+
+{{with $a := 1}}{{with $b := 2}}
+add(1,2) = {{add $a $b}}
+subtract(1,2) = {{subtract $a $b}}
+multiply(1,2) = {{multiply $a $b}}
+divide(2,1) = {{divide $b $a}}
+{{end}}{{end}}
+
+
+## Pretty Json
+
+{{ . | prettyjson }}
+
+
+
+## Sprig: Basic
+
 {{`{{trim "   hello    "}}`}}:                                                            {{trim "   hello    "}}
 {{`{{trimAll "$" "$5.00"}}`}}:                                                            {{trimAll "$" "$5.00"}}
 {{`{{trimSuffix "-" "hello-"}}`}}:                                                        {{trimSuffix "-" "hello-"}}
@@ -46,14 +143,10 @@
 {{`{{regexReplaceAllLiteral "a(x*)b" "-ab-axxb-" "${1}"}}`}}:                             {{regexReplaceAllLiteral "a(x*)b" "-ab-axxb-" "${1}"}}
 {{`{{regexSplit "z+" "pizza" -1}}`}}:                                                     {{regexSplit "z+" "pizza" -1}}
 
-# Get one specific method on array method using index
-{{`{{ index .Service.Method 1 }}`}}:                                                      {{ index .Service.Method 1 }}
 
-# Sprig: advanced
+## Sprig: Advanced
+
 {{`{{if contains "cat" "catch"}}yes{{else}}no{{end}}`}}:   {{if contains "cat" "catch"}}yes{{else}}no{{end}}
 {{`{{1 | plural "one anchovy" "many anchovies"}}`}}:       {{1 | plural "one anchovy" "many anchovies"}}
 {{`{{2 | plural "one anchovy" "many anchovies"}}`}}:       {{2 | plural "one anchovy" "many anchovies"}}
 {{`{{3 | plural "one anchovy" "many anchovies"}}`}}:       {{3 | plural "one anchovy" "many anchovies"}}
-
-# TODO: more sprig examples
-# TODO: all built-in examples

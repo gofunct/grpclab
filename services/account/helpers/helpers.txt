@@ -1,8 +1,8 @@
 # Common variables
-{{.File.Name}}:                                                                           services/account/account.proto
-{{.File.Name | upper}}:                                                                   SERVICES/ACCOUNT/ACCOUNT.PROTO
+{{.File.Name}}:                                                                           account/account.proto
+{{.File.Name | upper}}:                                                                   ACCOUNT/ACCOUNT.PROTO
 {{.File.Package | base | replace "." "-"}}                                                account
-{{$packageDir := .File.Name | dir}}{{$packageDir}}                                        services/account
+{{$packageDir := .File.Name | dir}}{{$packageDir}}                                        account
 {{$packageName := .File.Name | base | replace ".proto" ""}}{{$packageName}}               account
 {{$packageImport := .File.Package | replace "." "_"}}{{$packageImport}}                   account
 {{$namespacedPackage := .File.Package}}{{$namespacedPackage}}                             account
@@ -25,7 +25,7 @@
 {{abbrev 5 "hello world"}}:                                                         he...
 {{abbrevboth 5 10 "1234 5678 9123"}}:                                               ...5678...
 {{initials "First Try"}}:                                                           FT
-{{randNumeric 3}}:                                                                  687
+{{randNumeric 3}}:                                                                  114
 {{- /*{{wrap 80 $someText}}*/}}:
 {{wrapWith 5 "\t" "Hello World"}}:                                                  Hello	World
 {{contains "cat" "catch"}}:                                                         true
@@ -56,10 +56,10 @@
 
 # TODO: more sprig examples
 # TODO: all built-in examples# Common variables
-{{.File.Name}}:                                                                           services/account/account.proto
-{{.File.Name | upper}}:                                                                   SERVICES/ACCOUNT/ACCOUNT.PROTO
+{{.File.Name}}:                                                                           account/account.proto
+{{.File.Name | upper}}:                                                                   ACCOUNT/ACCOUNT.PROTO
 {{.File.Package | base | replace "." "-"}}                                                account
-{{$packageDir := .File.Name | dir}}{{$packageDir}}                                        services/account
+{{$packageDir := .File.Name | dir}}{{$packageDir}}                                        account
 {{$packageName := .File.Name | base | replace ".proto" ""}}{{$packageName}}               account
 {{$packageImport := .File.Package | replace "." "_"}}{{$packageImport}}                   account
 {{$namespacedPackage := .File.Package}}{{$namespacedPackage}}                             account
@@ -82,7 +82,7 @@
 {{abbrev 5 "hello world"}}:                                                         he...
 {{abbrevboth 5 10 "1234 5678 9123"}}:                                               ...5678...
 {{initials "First Try"}}:                                                           FT
-{{randNumeric 3}}:                                                                  470
+{{randNumeric 3}}:                                                                  690
 {{- /*{{wrap 80 $someText}}*/}}:
 {{wrapWith 5 "\t" "Hello World"}}:                                                  Hello	World
 {{contains "cat" "catch"}}:                                                         true

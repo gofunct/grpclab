@@ -9,8 +9,8 @@ import (
         "github.com/go-kit/kit/endpoint"
         jwt "github.com/go-kit/kit/auth/jwt"
 
-        pb "github.com/gofunct/services"
-        endpoints "github.com/gofunct/services/endpoints"
+        pb "/"
+        endpoints "//endpoints"
 )
 
 

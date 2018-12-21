@@ -9,8 +9,8 @@ import (
     oldcontext "golang.org/x/net/context"
 	grpctransport "github.com/go-kit/kit/transport/grpc"
 
-    pb "github.com/gofunct/services"
-    endpoints "github.com/gofunct/services/endpoints"
+    pb "/"
+    endpoints "//endpoints"
 )
 
 // avoid import errors
@@ -339,8 +339,8 @@ import (
     oldcontext "golang.org/x/net/context"
 	grpctransport "github.com/go-kit/kit/transport/grpc"
 
-    pb "github.com/gofunct/services"
-    endpoints "github.com/gofunct/services/endpoints"
+    pb "/"
+    endpoints "//endpoints"
 )
 
 // avoid import errors
