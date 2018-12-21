@@ -1,28 +1,29 @@
 syntax = "proto3";
-option go_package = "github.com/lileio/cloud_storage_service";
+
 package storage;
 
-message StoreRequest {
-    string filename = 1;
+option go_package = "github.com/gofunct/services/storage";
 
-    // The raw data of the object to be stored
-    bytes data = 2;
+message StoreRequest {
+  string filename = 1;
+  // The raw data of the object to be stored
+  bytes data = 2;
 }
 
 message DeleteRequest {
-    string filename = 1;
+  string filename = 1;
 }
 
 message DeleteResponse {
-    string filename = 1;
+  string filename = 1;
 }
 
 message StorageObject {
-    string filename = 1;
-    string url = 2;
+  string filename = 1;
+  string url = 2;
 }
 
 service CloudStorageService {
-    rpc Store(StoreRequest) returns (StorageObject) {}
-    rpc Delete(DeleteRequest) returns (DeleteResponse) {}
+  rpc Store(StoreRequest) returns (StorageObject);
+  rpc Delete(DeleteRequest) returns (DeleteResponse);
 }
