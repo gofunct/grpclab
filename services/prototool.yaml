@@ -8,7 +8,10 @@ generate:
   - name: gogoslick
     type: gogo
     flags: plugins=grpc
-    output: services
+    output: .
   - name: gotemplate
     flags: template_dir=templates
-    output: services
+    output: .
+  - name: cobra
+    flags: plugins=client
+    output: .
