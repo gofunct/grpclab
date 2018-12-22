@@ -17,7 +17,6 @@ default: test
 init: deps prototool $(TARGETS_TMPL)
 	go mod vendor
 	go install
-	grpclab serve
 
 deps: ## download dependencies and tls certificates
 	go mod vendor
