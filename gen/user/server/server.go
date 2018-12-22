@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/go-kit/kit/log"
 	pb "github.com/gofunct/grpclab/gen/user"
-	"github.com/gofunct/grpclab/gen/user/endpoints"
+	endpoints "github.com/gofunct/grpclab/gen/user/endpoints"
 	grpctransport "github.com/gofunct/grpclab/gen/user/transports/grpc"
 	httptransport "github.com/gofunct/grpclab/gen/user/transports/http"
 	svc "github.com/gofunct/grpclab/services/user"
