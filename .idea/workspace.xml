@@ -100,6 +100,7 @@
     <session id="-488654966">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.opened" value="1" />
         </counts>
@@ -235,11 +236,6 @@
           <expand>
             <path>
               <item name="grpclab" type="b2602c69:ProjectViewProjectNode" />
-              <item name="grpclab" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="grpclab" type="b2602c69:ProjectViewProjectNode" />
-              <item name="grpclab" type="462c0819:PsiDirectoryNode" />
               <item name="grpclab" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
